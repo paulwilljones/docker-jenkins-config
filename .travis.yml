@@ -4,4 +4,4 @@ services:
   - docker
 
 script:
-  - docker build -t quay.io/ukhomeofficedigital/docker-jenkins-keycloak:travis .
+  - docker build -t quay.io/ukhomeofficedigital/docker-jenkins-config:travis .

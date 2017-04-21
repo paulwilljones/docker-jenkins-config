@@ -1,4 +1,5 @@
 docker-jenkins-keycloak
 =======================
-.. image:: https://travis-ci.org/paulwilljones/jenkins-docker-aws.svg?branch=master
-    :target: https://travis-ci.org/paulwilljones/jenkins-docker-aws
+
+.. image:: https://travis-ci.org/paulwilljones/docker-jenkins-config.svg?branch=master
+    :target: https://travis-ci.org/paulwilljones/docker-jenkins-config

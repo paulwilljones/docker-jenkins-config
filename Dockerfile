@@ -8,5 +8,5 @@ RUN /usr/local/bin/install-plugins.sh \
   keycloak
 
 # Disable initial wizard
-RUN echo latest > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state && \
-    echo latest > /usr/share/jenkins/ref/jenkins.install.InstallUtil.lastExecVersion
+RUN echo 2.55 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
+#RUN echo 2.55 > /usr/share/jenkins/ref/jenkins.install.InstallUtil.lastExecVersion
