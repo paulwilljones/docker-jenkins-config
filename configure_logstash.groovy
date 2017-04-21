@@ -1,7 +1,7 @@
 import jenkins.model.*
 import hudson.model.*
 import jenkins.plugins.logstash.LogstashInstallation
-import jenkins.plugins.logstash.LogstashNotifier
+#import jenkins.plugins.logstash.LogstashNotifier
 
 def instance = Jenkins.getInstance()
 
@@ -12,6 +12,6 @@ descriptor.host = $ELASTICSEARCH_HOST
 descriptor.port = $ELASTCHSEARCH_PORT
 descriptor.key = "/logstash/logs"
 
-def LogstashNotifier(-1, false)
+#def LogstashNotifier(-1, false)
 
 instance.save()
