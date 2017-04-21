@@ -1,2 +1,4 @@
 .travis.yml
 README.rst
+.drone.yml
+configure_logstash.groovy

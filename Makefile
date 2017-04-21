@@ -18,9 +18,6 @@ default: help
 help:
 	
 	@echo "---> Help menu:"
-	@echo "supported make targets:"
-	@echo ""
-	@echo "---"
 	@echo ""
 	@echo "Help output:"
 	@echo "make help"
@@ -29,11 +26,11 @@ help:
 	@echo "make build_image"
 	@echo ""
 	@echo "Sends the image artifact to the quay repository"
-	@echo "make image_to_quay"
+	@echo "make run_image"
 	@echo ""
 
 build_image:
 	docker build -t quay.io/ukhomeofficedigital/docker-jenkins-config .
 
 run_image: 
-	docker run --rm -d quay.io/ukhomeofficedigital/docker-jenkins-config
+	docker run --name jenkins -d -t quay.io/ukhomeofficedigital/docker-jenkins-config
