@@ -33,4 +33,4 @@ build_image:
 	docker build -t quay.io/ukhomeofficedigital/docker-jenkins-config .
 
 run_image: 
-	docker run --name jenkins -d -t quay.io/ukhomeofficedigital/docker-jenkins-config
+	docker run --name jenkins --env-file ./env.list -d -t quay.io/ukhomeofficedigital/docker-jenkins-config
