@@ -11,4 +11,6 @@ descriptor.type = "ELASTICSEARCH"
 descriptor.port = 80
 descriptor.key = "/logstash/logs"
 
+def notifier = new LogstashNotifier(-1, false)
+
 instance.save()
