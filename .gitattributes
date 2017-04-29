@@ -1,2 +1,7 @@
-configure_keycloak.groovy filter=git-crypt diff=git-crypt
 env.list filter=git-crypt diff=git-crypt
+*.key filter=git-crypt diff=git-crypt
+*.password filter=git-crypt diff=git-crypt
+*.env filter=git-crypt diff=git-crypt
+*.env.json filter=git-crypt diff=git-crypt
+*.yaml filter=git-crypt diff=git-crypt
+*.yml filter=git-crypt diff=git-crypt

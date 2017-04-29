@@ -30,7 +30,7 @@ help:
 	@echo ""
 
 build_image:
-	docker build -t quay.io/ukhomeofficedigital/docker-jenkins-config .
+	docker build -t docker-jenkins-config .
 
 run_image: 
-	docker run --name jenkins --env-file ./env.list -p 9090:8080 -d -t quay.io/ukhomeofficedigital/docker-jenkins-config
+	docker run --name jenkins --env-file ./env.list -p 9090:8080 -d -t docker-jenkins-config
