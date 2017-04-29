@@ -5,7 +5,7 @@ services:
 
 install:
   - docker build -t docker-jenkins-config:travis .
-  - docker run -idt --name jenkins --env-file ./env.list docker-jenkins-config:travis
+  - docker run -d --name jenkins --env-file ./env.list docker-jenkins-config:travis
 
 script:
  - docker ps | grep -q jenkins
