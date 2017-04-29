@@ -1,5 +1,5 @@
 #FROM quay.io/ukhomeofficedigital/jenkin-docker-aws
-FROM jenkinsci/jenkins
+FROM jenkinsci/jenkins:latest
 
 USER root
 
