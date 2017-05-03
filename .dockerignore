@@ -1,4 +1,5 @@
 .travis.yml
 README.rst
-.drone.yml
-.gitattributes
+.git*
+LICENSE
+Makefile

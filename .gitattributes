@@ -1,4 +1,4 @@
-env.list filter=git-crypt diff=git-crypt
+config/env.list filter=git-crypt diff=git-crypt
 *.key filter=git-crypt diff=git-crypt
 *.password filter=git-crypt diff=git-crypt
 *.env filter=git-crypt diff=git-crypt

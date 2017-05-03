@@ -1,0 +1,4 @@
+keycloakJson={"realm": "ci","auth-server-url": "http://localhost:9090/auth","ssl-required": "external","resource": "jenkins","public-client": true}
+ELASTICSEARCH_HOST=localhost
+ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_INDEX=logstash-jenkins/logstash
