@@ -3,9 +3,24 @@ sudo: required
 services:
   - docker
 
+env:
+  global:
+    - secure: "KR9thfTzd3YRMC+Ayz63X+xt0CnZQ5XluyXCO44Ojs1rSTUPX2L07FhviX4UQN23dgUBDE3O5uRtBCsL/v1+2saA8Lx4+mHC1qJtNrA1s4qdYhgUp7dbz+f2AUYiNfnLK6ADNkcb+KtqOQzPaYfNIIh8yr1im9QWQaX6hMI7qN7012MquBHkDNzTS1CoXzeg39gpbIvvFrZbq5RxkYC4H3Yi03Rr+3ZK3iheYI9nKCS2wkTG5CF8TaDx6zLacY0mN3X5/npUVGUPF9Ns3b92JB9RVlMNAJ+/OUTDAJBR21yCySTUy53xuSNK/x5V7nzMFZz5gXXCpVf1sqUS60XL2SCF7jFK8QLYW7Uwa6B3ytTLzED6oYWO/SLhIRviV8omLFopFaCmiaodpVDKN7Jh73Fp4nPIhKvi3vX+qiNZmCqKksH/VjDEeyqajupYrE091SGTNvffgnucz6goRvHXirssL4ASd+tBHfQZQ0RkmW/biDLz4SVDD/TXsRsaNX9Ro3MHGE6TP9K/cbV4RWbdR9edPu5wiaf4XWwZcMRn2XkrYQ21eOl6WYUzucpaJXmYjU46Ce8+CbuxAJxbxclwFesZwWzwE0HHZkVss9PRKGpZNDw3giMTx2CySp4cEf8TdZVIccJpZ7vme3QVOrn/SPlpM4jqsl3sTbN+YEaZ+6c" # DOCKER_USER
+    - secure: "Ap/TkbZ4n3grpXsOkMHR3s5BDk3uirYvu3GVsgUFXJmPn1PiziN6/zd0lL61B+atuaM/Q4ZN1OHtQXQtQmJySq526/slQdSk9pqaLnO9nNUPmsOXugHeWEvTIPc3hApB7WiZt46R9H15hI4pBPjWvt9rDoqPxfh0TTwJPt3LO5fTrJT6IBbu8wf2LXgltQ9wULdB9K8IiR9mUP14rPGNKRv1Jki+/sbUOYlDy405GJtQMtxPBTyKyYzm8CdZ0NLbtm+Ldmee3BEORthaOZrCiHLiAs+csQCs8qYsXIDAiPazO6xrkm5ShbWICmBqxWPRBRcM64kjB5dQ48vNWqPK/f0O7XMuupySFpSMWGGjJWxDrjb8fDXbM6u3J0v0Ngz1mkr0kOT1ZKAYJUSTVhlcv05b/VVa3Jd6h1oMQ0SiYxODuvMnLckuYeZvI6gCGmModKDL2d2YfqIFrsjBU0DzzSIWO0lejYkSrR7YN1VY8p8wsf1kSgBxzx4Tl5raXK5MoNzuoe0II4BEwCfF6H/eBsU7yF+0xvLkkuoGZ8RDX+hlEADDcbub5cdO5fboHpa1T0SJcqLrJNMHIwBAGhRbqJ89SPV6n0bGKYxXGQzRNgZ015m3IZMG2tYcYcRafj1d7rDXX3jfuckbqJX5uUzSxWj/3yLCrH5l2f0AKvWie+c=" # DOCKER_PASS
+    - COMMIT=${TRAVIS_COMMIT::8}
+
 install:
   - docker build -t docker-jenkins-config:travis .
   - docker run -d --env-file config/test-env.list --name jenkins docker-jenkins-config:travis
 
 script:
  - docker ps | grep -q jenkins
+
+after_success:
+  - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS" quay.io
+  - export REPO=paulwilljones/docker-jenkins-config
+  - export TAG=`if [ "TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -f Dockerfile -t $REPO:$COMMIT .
+  - docker tag $REPO:$COMMIT $REPO:$TAG
+  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  - docker push $REPO
