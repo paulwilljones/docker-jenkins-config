@@ -18,7 +18,7 @@ script:
 
 after_success:
   - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS" quay.io
-  - export REPO=paulwilljones/docker-jenkins-config
+  - export REPO=quay.io/paulwilljones/docker-jenkins-config
   - export TAG=`if [ "TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
   - docker build -f Dockerfile -t $REPO:$COMMIT .
   - docker tag $REPO:$COMMIT $REPO:$TAG
