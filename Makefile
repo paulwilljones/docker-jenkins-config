@@ -32,5 +32,5 @@ help:
 build_image:
 	docker build -t docker-jenkins-config .
 
-run_image: 
-	docker run --name jenkins --env-file ./env.list -p 9090:8080 -d -t docker-jenkins-config
+run_image: build_image
+	docker run --rm --name jenkins --env-file ./config/env.list -p 9090:8080 -d -t docker-jenkins-config
